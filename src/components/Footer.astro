@@ -1,0 +1,36 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="/images/logo.svg" alt="Logo" />
+    </div>
+    <p>© {currentYear} | All rights reserved</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-logo img {
+    height: 2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #888;
+  }
+</style>

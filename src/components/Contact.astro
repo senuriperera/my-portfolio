@@ -1,0 +1,103 @@
+---
+const contactNumber = "0712449151"; // Replace with your actual contact number
+const socialLinks = [
+  { platform: "Gmail", url: "pererasenuri7@gmail.com" },
+  { platform: "GitHub", url: "https://github.com/senuriperera" },
+  { platform: "LinkedIn", url: "www.linkedin.com/in/senuriperera5583" },
+];
+---
+
+<section id="contact">
+  <h2>Contact</h2>
+
+  <div class="contact-content">
+    <p>
+      I'm currently looking to join a cross-functional team that values
+      improving people's lives through accessible design, or have a project in
+      mind? Let's connect!
+    </p>
+
+    <p class="contact-number">{contactNumber}</p>
+
+    <div class="social-links">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <span class="icon">{link.platform[0]}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #contact {
+    margin: 8rem 0;
+    padding-bottom: 4rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+  }
+
+  .contact-content {
+    max-width: 700px;
+  }
+
+  .contact-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .contact-number {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .social-icon:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+  }
+</style>

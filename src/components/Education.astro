@@ -1,0 +1,115 @@
+---
+const educationItems = [
+  {
+    title: "Bachelor's in Software Engineering",
+    institution: "University of Plymouth",
+    period: "2023-2026",
+    description:
+      "This degree program provides a strong foundation in software development, programming languages, algorithms, system design, and UI design. It has equipped me with hands-on experience in both front-end and back-end development, with a focus on creating user-friendly interfaces.",
+  },
+  {
+    title: "Career Essentials in Genrative AI Certfication",
+    institution: "Microsoft,LinkedIn",
+    period: "2024",
+    description:
+      "This certification provides a foundational understanding of artificial intelligence, covering key concepts like machine learning, neural networks, and AI ethics. It equips learners with essential skills to pursue entry-level roles in AI and start building a career in the field.",
+  },
+  {
+    title: "Advanced Level (Physical Science Stream)",
+    institution: "Royal Institute",
+    period: "2020-2023",
+    description:
+      "Did Advanced Level in Physical Science Stream with subjects including Combined Mathematics, Physics, and Chemistry.",
+  },
+];
+---
+
+<section id="education">
+  <h2>Education</h2>
+
+  <div class="education-box">
+    <div class="education-list">
+      {
+        educationItems.map((item) => (
+          <div class="education-item">
+            <h3>{item.title}</h3>
+            <p class="institution">
+              {item.institution} • {item.period}
+            </p>
+            <p class="description">{item.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #education {
+    margin: 8rem 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+  }
+
+  .education-box {
+    background: linear-gradient(
+      to right,
+      rgba(138, 79, 255, 0.1),
+      rgba(79, 138, 255, 0.1)
+    );
+    border-radius: 10px;
+    padding: 2rem;
+  }
+
+  .education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .education-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(138, 79, 255, 0.1);
+  }
+
+  .education-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .institution {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ddd;
+  }
+</style>

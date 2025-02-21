@@ -1,0 +1,99 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  githubLink: string;
+  projectName: string;
+  isReversed?: boolean;
+}
+
+const {
+  title,
+  description,
+  githubLink,
+  projectName,
+  isReversed = false,
+} = Astro.props;
+---
+
+<div class={`project-card ${isReversed ? "reversed" : ""}`}>
+  <div class="project-content">
+    <div class="project-text">
+      <h3>{projectName}</h3>
+      <h2>{title}</h2>
+      <p class="description">{description}</p>
+      <div class="project-link">
+        <a href={githubLink} target="_blank" rel="noopener noreferrer">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    margin-bottom: 8rem;
+  }
+
+  .project-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .reversed .project-content {
+    flex-direction: row-reverse;
+  }
+
+  .project-text {
+    flex: 1;
+  }
+
+  .project-text h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #ddd;
+  }
+
+  .project-link {
+    text-align: left;
+    padding-left: 1rem;
+  }
+
+  .project-link a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .project-link a:hover {
+    background-color: rgba(138, 79, 255, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    .project-content,
+    .reversed .project-content {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+</style>

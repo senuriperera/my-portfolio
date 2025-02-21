@@ -1,11 +1,81 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Education from "../components/Education.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = [
+  {
+    title: "Online Movie Ticket Booking System using Java",
+    description:
+      "A robust web-based application designed to streamline movie ticket booking, food preordering, and seat reservations. Built using Java, Servlets, and JSP, it integrates modern user expectations with traditional cinema operations. Key features include movie browsing, showtime and seat selection, secure ticket bookings, food preordering, and PayPal payments. The system also offers an admin dashboard for efficient management and user dashboards for managing reservations. Future enhancements will focus on mobile responsiveness and advanced analytics for improved operational insights",
+    githubLink: "https://github.com/sadeesacs/Zion-Cinema.git",
+    projectName: "Zion Cinema",
+  },
+  {
+    title: "Student GPA and University semester grades analyzing app with C#",
+    description:
+      "A web based application designed to manage and analyze student GPAs and university semester grades. It simplifies academic data management with features like student and course management, automated GPA calculation, and user-friendly dashboards for both students and administrators. The system includes tools for data backup, user settings, and visual elements such as Oxyplot charts. Future plans involve performance dashboards and enhanced search functionality to improve data retrieval. UniTrack streamlines academic processes and helps improve academic outcomes for students and institutions.",
+    githubLink:
+      "https://github.com/RajanithBandara/WindowsApplicationProject.git",
+    projectName: "UniTrack",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Portfolio | Senuri Perera">
+  <Header />
+  <main>
+    <Hero />
+    <Education />
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      {
+        projects.map((project, index) => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            githubLink={project.githubLink}
+            projectName={project.projectName}
+            isReversed={index % 2 !== 0}
+          />
+        ))
+      }
+    </section>
+
+    <Contact />
+  </main>
+  <Footer />
+</MainLayout>
+
+<style>
+  main {
+    padding: 1rem 0;
+  }
+
+  #projects {
+    margin: 8rem 0;
+  }
+
+  #projects h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  #projects h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+  }
+</style>

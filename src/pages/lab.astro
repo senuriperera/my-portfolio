@@ -1,0 +1,38 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<MainLayout title="Lab | Your Name">
+  <Header />
+  <main>
+    <section class="lab">
+      <h1>Lab</h1>
+      <div class="lab-content">
+        <p>
+          This is where you can showcase experiments, side projects, or work in
+          progress.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</MainLayout>
+
+<style>
+  .lab {
+    min-height: 70vh;
+    padding: 4rem 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .lab-content {
+    max-width: 800px;
+    line-height: 1.6;
+  }
+</style>
