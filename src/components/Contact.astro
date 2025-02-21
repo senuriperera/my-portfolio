@@ -1,9 +1,21 @@
 ---
-const contactNumber = "0712449151"; // Replace with your actual contact number
+const contactNumber = "0712449151";
 const socialLinks = [
-  { platform: "Gmail", url: "pererasenuri7@gmail.com" },
-  { platform: "GitHub", url: "https://github.com/senuriperera" },
-  { platform: "LinkedIn", url: "www.linkedin.com/in/senuriperera5583" },
+  {
+    platform: "Gmail",
+    url: "mailto:pererasenuri7@gmail.com",
+    icon: "/gmail-icon.jpg",
+  },
+  {
+    platform: "GitHub",
+    url: "https://github.com/senuriperera",
+    icon: "/github-icon.jpg",
+  },
+  {
+    platform: "LinkedIn",
+    url: "https://www.linkedin.com/in/senuriperera5583",
+    icon: "/linkedin-icon.jpg",
+  },
 ];
 ---
 
@@ -27,8 +39,9 @@ const socialLinks = [
             target="_blank"
             rel="noopener noreferrer"
             class="social-icon"
+            aria-label={link.platform}
           >
-            <span class="icon">{link.platform[0]}</span>
+            <img src={link.icon} alt={link.platform} />
           </a>
         ))
       }
@@ -86,14 +99,18 @@ const socialLinks = [
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    color: var(--text);
-    transition:
-      background 0.2s ease,
-      transform 0.2s ease;
+    overflow: hidden; /* Added to contain the image */
+  }
+
+  .social-icon img {
+    width: 100%;
+    height: 100%;
+    padding: 0.75rem;
+    object-fit: contain;
   }
 
   .social-icon:hover {
