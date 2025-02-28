@@ -11,17 +11,78 @@ const projects = [
   {
     title: "Online Movie Ticket Booking System using Java",
     description:
-      "A robust web-based application designed to streamline movie ticket booking, food preordering, and seat reservations. Built using Java, Servlets, and JSP, it integrates modern user expectations with traditional cinema operations. Key features include movie browsing, showtime and seat selection, secure ticket bookings, food preordering, and PayPal payments. The system also offers an admin dashboard for efficient management and user dashboards for managing reservations. Future enhancements will focus on mobile responsiveness and advanced analytics for improved operational insights",
+      "A robust web-based application designed to streamline movie ticket booking, food preordering, and seat reservations.",
     githubLink: "https://github.com/sadeesacs/Zion-Cinema.git",
     projectName: "Zion Cinema",
+    highlights: [
+      "Integrated secure PayPal payment system",
+      "Real-time seat selection and booking",
+      "Food pre-ordering system",
+      "Admin dashboard for movie management",
+      "User profile and booking history",
+    ],
+    technologies: [
+      "Java",
+      "Servlets",
+      "JSP",
+      "MySQL",
+      "HTML/CSS",
+      "JavaScript",
+      "PayPal API",
+    ],
   },
   {
-    title: "Student GPA and University semester grades analyzing app with C#",
+    title: "Student GPA and University semester grades analyzing app",
     description:
-      "A web based application designed to manage and analyze student GPAs and university semester grades. It simplifies academic data management with features like student and course management, automated GPA calculation, and user-friendly dashboards for both students and administrators. The system includes tools for data backup, user settings, and visual elements such as Oxyplot charts. Future plans involve performance dashboards and enhanced search functionality to improve data retrieval. UniTrack streamlines academic processes and helps improve academic outcomes for students and institutions.",
+      "A web based application designed to manage and analyze student GPAs and university semester grades.",
     githubLink:
       "https://github.com/RajanithBandara/WindowsApplicationProject.git",
     projectName: "UniTrack",
+    highlights: [
+      "Automated GPA calculation",
+      "Student and course management",
+      "Data visualization with Oxyplot",
+      "Customizable user settings",
+      "Data backup and restore",
+    ],
+    technologies: [
+      "C#",
+      ".NET",
+      "WinForms",
+      "SQL Server",
+      "Oxyplot",
+      "Entity Framework",
+    ],
+  },
+  {
+    title: "E-Commerce Platform",
+    description:
+      "A full-featured online shopping platform with user authentication and payment integration.",
+    githubLink: "https://github.com/yourusername/ecommerce",
+    projectName: "ShopEase",
+    highlights: [
+      "User authentication",
+      "Shopping cart functionality",
+      "Product search and filtering",
+      "Order management",
+      "Review system",
+    ],
+    technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe", "JWT"],
+  },
+  {
+    title: "Weather Dashboard",
+    description:
+      "A weather forecasting application that provides real-time weather data and forecasts.",
+    githubLink: "https://github.com/yourusername/weather-app",
+    projectName: "WeatherNow",
+    highlights: [
+      "Real-time weather updates",
+      "5-day forecast",
+      "Location-based weather",
+      "Weather maps",
+      "Temperature tracking",
+    ],
+    technologies: ["JavaScript", "Weather API", "HTML5", "CSS3", "Chart.js"],
   },
 ];
 ---
@@ -32,20 +93,23 @@ const projects = [
     <Hero />
     <Education />
 
-    <section id="projects">
+    <section id="projects" class="container">
       <h2>Projects</h2>
-
-      {
-        projects.map((project, index) => (
-          <ProjectCard
-            title={project.title}
-            description={project.description}
-            githubLink={project.githubLink}
-            projectName={project.projectName}
-            isReversed={index % 2 !== 0}
-          />
-        ))
-      }
+      <div class="projects-grid">
+        {
+          projects.map((project, index) => (
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              githubLink={project.githubLink}
+              projectName={project.projectName}
+              highlights={project.highlights}
+              technologies={project.technologies}
+              isReversed={index % 2 !== 0}
+            />
+          ))
+        }
+      </div>
     </section>
 
     <Contact />
@@ -77,5 +141,25 @@ const projects = [
     height: 4px;
     background-color: var(--accent);
     border-radius: 2px;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 </style>

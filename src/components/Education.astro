@@ -27,20 +27,20 @@ const educationItems = [
 <section id="education">
   <h2>Education</h2>
 
-  <div class="education-box">
-    <div class="education-list">
-      {
-        educationItems.map((item) => (
-          <div class="education-item">
+  <div class="education-timeline">
+    {
+      educationItems.map((item) => (
+        <div class="timeline-item">
+          <div class="timeline-content">
             <h3>{item.title}</h3>
             <p class="institution">
               {item.institution} • {item.period}
             </p>
             <p class="description">{item.description}</p>
           </div>
-        ))
-      }
-    </div>
+        </div>
+      ))
+    }
   </div>
 </section>
 
@@ -66,37 +66,70 @@ const educationItems = [
     border-radius: 2px;
   }
 
-  .education-box {
-    background: linear-gradient(
-      to right,
-      rgba(138, 79, 255, 0.1),
-      rgba(79, 138, 255, 0.1)
-    );
-    border-radius: 10px;
-    padding: 2rem;
+  .education-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 4rem auto;
+    padding-left: 50px;
   }
 
-  .education-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .education-timeline::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    background: linear-gradient(var(--accent), rgba(138, 79, 255, 0.3));
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 3px;
   }
 
-  .education-item {
+  .timeline-item {
+    position: relative;
+    margin: 3rem 0;
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent);
+    top: 25px;
+    left: -50px;
+  }
+
+  .timeline-item::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -57px;
+    background-color: var(--background);
+    border: 4px solid var(--accent);
+    border-radius: 50%;
+    top: 15px;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(138, 79, 255, 0.5);
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
-    padding: 1.5rem;
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(138, 79, 255, 0.2);
+    margin-left: 30px;
   }
 
-  .education-item:hover {
+  .timeline-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(138, 79, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(138, 79, 255, 0.15);
+    border-color: var(--accent);
   }
 
-  .education-item h3 {
+  .timeline-content h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
@@ -111,5 +144,20 @@ const educationItems = [
     font-size: 0.95rem;
     line-height: 1.5;
     color: #ddd;
+  }
+
+  @media screen and (max-width: 768px) {
+    .education-timeline {
+      padding-left: 30px;
+    }
+
+    .timeline-item::before {
+      width: 30px;
+      left: -30px;
+    }
+
+    .timeline-item::after {
+      left: -37px;
+    }
   }
 </style>

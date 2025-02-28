@@ -1,7 +1,5 @@
 ---
-const name = "Senuri Perera";
-const profession = "Software Engineer";
-const company = "Undergraduate";
+const texts = ["Senuri", "a UI/UX Designer", "a Frontend Developer"];
 ---
 
 <section class="hero">
@@ -11,7 +9,13 @@ const company = "Undergraduate";
     </div>
 
     <div class="intro-text">
-      <p class="greeting">Hello! I Am <span class="name">{name}</span></p>
+      <div class="greeting-container">
+        <p class="greeting">Hello! I Am</p>
+        <div class="typing-container">
+          <span id="typing-text"></span>
+          <span class="cursor">|</span>
+        </div>
+      </div>
 
       <div class="title-container">
         <p class="designer-text">A Developer who</p>
@@ -27,21 +31,25 @@ const company = "Undergraduate";
     </div>
   </div>
 
-  <div class="profession-container">
-    <h2 class="profession-title">I'm a Software Engineer.</h2>
-    <p class="current-role">
-      Currently, I'm a Undergraduate Software Engineering Student at University
-      Of Plymouth
-    </p>
-
-    <div class="bio">
-      <p>
-        I’m passionate about UI design and front-end development, where I get to
-        blend creativity with technology. I love crafting visually appealing and
-        user-friendly interfaces while constantly exploring new technologies to
-        stay ahead in the field. Whether it’s building sleek websites or
-        enhancing user experiences, I enjoy turning ideas into digital reality.
+  <div class="about-me-card">
+    <h2 class="section-title">About Me</h2>
+    <div class="card-content">
+      <h3 class="role-title">I'm a Software Engineer</h3>
+      <p class="current-role">
+        Currently, I'm an Undergraduate Software Engineering Student at
+        University Of Plymouth
       </p>
+
+      <div class="bio">
+        <p>
+          I'm passionate about UI design and front-end development, where I get
+          to blend creativity with technology. I love crafting visually
+          appealing and user-friendly interfaces while constantly exploring new
+          technologies to stay ahead in the field. Whether it's building sleek
+          websites or enhancing user experiences, I enjoy turning ideas into
+          digital reality.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -99,11 +107,44 @@ const company = "Undergraduate";
     flex: 1;
   }
 
-  .greeting {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+  .greeting-container {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .greeting {
+    font-size: 2rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .typing-container {
+    min-height: 50px;
+    position: relative;
+    color: #8a4fff;
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .cursor {
+    display: inline-block;
+    margin-left: 3px;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   .name {
@@ -150,41 +191,64 @@ const company = "Undergraduate";
     margin-top: 0.75rem;
   }
 
-  .profession-container {
+  .about-me-card {
     max-width: 800px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
 
-  .profession-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
+  .about-me-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      #8a4fff 25%,
+      transparent 50%
+    );
+    animation: rotate 4s linear infinite;
+    opacity: 0.5; /* Changed from 0 to 0.5 to make it always visible */
   }
 
-  .current-role {
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
+  .about-me-card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: rgb(17, 17, 17);
+    border-radius: 14px;
+    z-index: 0;
   }
 
-  .company-link {
-    display: flex;
-    align-items: center;
-    color: #4267b2;
-    margin-left: 0.5rem;
+  .card-content {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
   }
 
-  .company-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 0.5rem;
+  .section-title {
+    position: relative;
+    z-index: 1;
   }
 
-  .bio {
-    line-height: 1.6;
-    color: #ddd;
-    max-width: 90%;
-    font-size: 1.1rem;
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   @media (max-width: 768px) {
@@ -193,16 +257,94 @@ const company = "Undergraduate";
       text-align: center;
     }
 
-    .profession-container {
-      text-align: center;
+    .about-me-card {
+      margin: 0 1rem;
+      padding: 1.5rem;
     }
 
-    .current-role {
+    .card-content {
+      padding: 0.5rem;
+    }
+
+    .typing-container {
       justify-content: center;
+      text-align: center;
+      width: 100%;
     }
 
-    .bio {
-      max-width: 100%;
+    .greeting-container {
+      justify-content: center;
+      flex-wrap: wrap;
     }
   }
 </style>
+
+<script>
+  const phrases = [
+    "Senuri Perera",
+    " An UI/UX Designer",
+    "A Frontend Developer",
+  ];
+  let currentPhraseIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  let typingElement = null;
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function typeText() {
+    typingElement = document.getElementById("typing-text");
+    if (!typingElement) return;
+
+    while (true) {
+      const currentPhrase = phrases[currentPhraseIndex];
+
+      if (!isDeleting) {
+        if (currentCharIndex < currentPhrase.length) {
+          typingElement.textContent += currentPhrase[currentCharIndex];
+          currentCharIndex++;
+          await sleep(100);
+        } else {
+          await sleep(2000);
+          isDeleting = true;
+        }
+      } else {
+        if (currentCharIndex > 0) {
+          typingElement.textContent = currentPhrase.substring(
+            0,
+            currentCharIndex - 1
+          );
+          currentCharIndex--;
+          await sleep(50);
+        } else {
+          isDeleting = false;
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          await sleep(500);
+        }
+      }
+    }
+  }
+
+  // Function to initialize the typing animation
+  function initTypeWriter() {
+    // Reset any existing animation
+    currentPhraseIndex = 0;
+    currentCharIndex = 0;
+    isDeleting = false;
+
+    // Start new animation
+    typeText().catch(console.error);
+  }
+
+  // Run on initial page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTypeWriter);
+  } else {
+    initTypeWriter();
+  }
+
+  // Run on Astro page transitions
+  document.addEventListener("astro:page-load", initTypeWriter);
+</script>
